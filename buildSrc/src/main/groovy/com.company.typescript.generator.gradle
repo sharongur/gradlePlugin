@@ -1,0 +1,30 @@
+plugins {
+    id "cz.habarta.typescript-generator"
+    id "dev.petuska.npm.publish"
+}
+
+
+
+tasks.register("packJsPackageExtension", dev.petuska.npm.publish.task.NpmPackTask.class) {
+
+    packageDir.set(layout.projectDirectory.dir("build/typescript-generator"))
+    dry.set(false)
+}
+
+npmPublish {
+    nodeHome.set(layout.projectDirectory.dir('/usr/'))
+    packages {
+        register("js") {
+            version.set("4.20.69")
+            packageName.set("coolio")
+            files {
+                from("build/packages")
+            }
+        }
+    }
+    registries {
+        register("npmjs") {
+            uri.set(uri("http://npm-registry.e-bitbox.com:8081/repository/npm-hosted/"))
+        }
+    }
+}

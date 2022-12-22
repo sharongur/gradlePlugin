@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+    id "com.company.typescript.generator"
+}
+
+
+sourceSets {
+    main {
+        java {
+            resources {
+                srcDir 'build/typescript-generator'
+            }
+        }
+    }
+}
+
+generateTypeScript {
+    jsonLibrary = 'jackson2'
+    classes = [
+            'com.company.SomeJavaClass'
+    ]
+    outputKind = 'module'
+//    namespace = 'Rest';
+}
+
+build.dependsOn generateTypeScript
