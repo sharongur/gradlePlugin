@@ -1,5 +1,4 @@
 pluginManagement {
-
     repositories {
         gradlePluginPortal()
         // https://github.com/gradle/gradle/issues/15406
@@ -7,8 +6,10 @@ pluginManagement {
     }
 
 }
-rootProject.name = 'GradlePluginTest'
+rootProject.name = "GradlePluginTest"
 
 
-include 'GradlePluginTest'
-include 'GradlePluginTestModule'
+include(
+        ":GradlePluginTest",
+        ":GradlePluginTestModule",
+)
